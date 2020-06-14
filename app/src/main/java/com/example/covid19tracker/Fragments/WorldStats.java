@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,9 +33,8 @@ import org.json.JSONObject;
 public class WorldStats extends Fragment {
     TextView tvCases, tvRecovered, tvCritical, tvTodayCases, tvActive, tvTotalDeaths, tvTodayDeaths, tvAffectedCountries;
     static SimpleArcLoader simpleArcLoader;
-    ScrollView scrollView;
     PieChart pieChart;
-    Button trackCountries;
+    LinearLayout dashPane;
 
     public WorldStats() {
         // Required empty public constructor
@@ -55,7 +55,7 @@ public class WorldStats extends Fragment {
         tvAffectedCountries = view.findViewById(R.id.tvAffectedC);
 
         simpleArcLoader = view.findViewById(R.id.loader);
-        scrollView = view.findViewById(R.id.scroll_stats);
+        dashPane = view.findViewById(R.id.dashPane);
         pieChart = view.findViewById(R.id.piechart);
         fetchData();
         return view;
@@ -84,13 +84,13 @@ public class WorldStats extends Fragment {
                     pieChart.startAnimation();
                     simpleArcLoader.stop();
                     simpleArcLoader.setVisibility(View.GONE);
-                    scrollView.setVisibility(View.VISIBLE);
+                    dashPane.setVisibility(View.VISIBLE);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                     simpleArcLoader.stop();
                     simpleArcLoader.setVisibility(View.GONE);
-                    scrollView.setVisibility(View.VISIBLE);
+                    dashPane.setVisibility(View.VISIBLE);
                 }
             }
         }, new Response.ErrorListener() {
@@ -99,7 +99,7 @@ public class WorldStats extends Fragment {
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                 simpleArcLoader.stop();
                 simpleArcLoader.setVisibility(View.GONE);
-                scrollView.setVisibility(View.VISIBLE);
+                dashPane.setVisibility(View.VISIBLE);
             }
         });
         RequestQueue queue = VolleySingleton.getInstance(getContext()).getRequestQueue();

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_white">
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:drawableLeft="@drawable/ic_baseline_search_24"
+        android:hint="Search"
+        android:textSize="20sp"
+        android:background="@drawable/edittext_shape"
+        android:drawablePadding="10dp"
+        android:maxLines="1"
+        />
+    <com.leo.simplearcloader.SimpleArcLoader
+        android:id="@+id/loader2"
+        android:visibility="visible"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        app:arc_style="simple_arc"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
+        android:layout_below="@id/search"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="14dp"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>
